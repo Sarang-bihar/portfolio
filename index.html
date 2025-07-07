@@ -5,23 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sarangdhar | Designer</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    :root {
+      --bg: #f9f9f9;
+      --text: #333;
+      --header-bg: #000;
+      --header-text: #fff;
+      --accent: #e0e0e0;
+      --bar: #333;
+    }
+    body.dark {
+      --bg: #121212;
+      --text: #f1f1f1;
+      --header-bg: #1f1f1f;
+      --header-text: #f1f1f1;
+      --accent: #2c2c2c;
+      --bar: #4caf50;
+    }
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
     }
     body {
-      background-color: #f9f9f9;
-      color: #333;
+      background-color: var(--bg);
+      color: var(--text);
       line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
     }
     header {
-      background: #000;
-      color: #fff;
+      background: var(--header-bg);
+      color: var(--header-text);
       padding: 2rem;
       text-align: center;
+      position: relative;
+    }
+    .dark-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      background: none;
+      color: var(--header-text);
+      border: 2px solid var(--header-text);
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+    .dark-toggle:hover {
+      background: var(--header-text);
+      color: var(--header-bg);
     }
     header img {
       width: 150px;
@@ -52,16 +89,27 @@
       color: #000;
       text-decoration: none;
       font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #007bff;
     }
     section {
       padding: 4rem 2rem;
       max-width: 800px;
       margin: auto;
       text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-out;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     h2 {
       margin-bottom: 1rem;
-      color: #111;
+      color: var(--text);
     }
     .skills {
       margin-top: 2rem;
@@ -77,13 +125,13 @@
     .skill-bar {
       height: 12px;
       width: 100%;
-      background: #e0e0e0;
+      background: var(--accent);
       border-radius: 6px;
       overflow: hidden;
     }
     .skill-bar-fill {
       height: 100%;
-      background: #333;
+      background: var(--bar);
     }
     .projects {
       display: grid;
@@ -95,6 +143,11 @@
       border-radius: 10px;
       background: #fff;
       text-align: left;
+      transition: all 0.3s ease;
+    }
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
     .education-item {
       margin-bottom: 2rem;
@@ -103,17 +156,33 @@
     footer {
       text-align: center;
       padding: 2rem;
-      background: #000;
-      color: #fff;
+      background: var(--header-bg);
+      color: var(--header-text);
     }
     .contact-info p {
       margin-bottom: 0.5rem;
     }
     .contact-info a {
-      color: #333;
+      color: var(--text);
       text-decoration: none;
     }
-
+    .social-icons {
+      margin-top: 1rem;
+    }
+    .social-icons a {
+      margin: 0 10px;
+      font-size: 1.8rem;
+      color: var(--text);
+      background: var(--accent);
+      padding: 10px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+    .social-icons a:hover {
+      color: #fff;
+      background: #007bff;
+      transform: scale(1.2);
+    }
     @media (max-width: 600px) {
       header h1 {
         font-size: 2rem;
@@ -126,14 +195,12 @@
         padding: 2rem 1rem;
         text-align: center;
       }
-      .skill {
-        text-align: left;
-      }
     }
   </style>
 </head>
 <body>
   <header>
+    <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Toggle Mode</button>
     <img src="profile_circular.jpg" alt="Sarangdhar Profile Picture" />
     <h1>Sarangdhar</h1>
     <p>Designer</p>
@@ -210,11 +277,34 @@
       <p>Email: Sarangdhar265@gmail.com</p>
       <p>Phone: +91-9576809247</p>
       <p>GitHub: <a href="https://github.com/Sarang-bihar" target="_blank">github.com/Sarang-bihar</a></p>
-      <p>Instagram: <a href="https://instagram.com/yourusername" target="_blank">@yourusername</a></p>
+      <p>Instagram: <a href="https://instagram.com/sarang_dhar26" target="_blank">@sarang_dhar26</a></p>
+      <div class="social-icons">
+        <a href="https://github.com/Sarang-bihar" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://instagram.com/sarang_dhar26" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
     </div>
   </section>
   <footer>
     <p>&copy; 2025 Sarangdhar. All rights reserved.</p>
   </footer>
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('dark-mode', document.body.classList.contains('dark'));
+    }
+    if (localStorage.getItem('dark-mode') === 'true') {
+      document.body.classList.add('dark');
+    }
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
