@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -61,6 +60,27 @@
       margin-bottom: 1rem;
       color: #111;
     }
+    .skills {
+      margin-top: 2rem;
+    }
+    .skill {
+      margin-bottom: 1rem;
+    }
+    .skill-label {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .skill-bar {
+      height: 12px;
+      width: 100%;
+      background: #e0e0e0;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      background: #333;
+    }
     .projects {
       display: grid;
       gap: 2rem;
@@ -80,6 +100,10 @@
     .contact-info p {
       margin-bottom: 0.5rem;
     }
+    .contact-info a {
+      color: #333;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -90,12 +114,38 @@
   </header>
   <nav>
     <a href="#about">About</a>
+    <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
   </nav>
   <section id="about">
     <h2>About Me</h2>
     <p>Recent graduate with a degree in Computer Science and a passion for building seamless and functional user interfaces. Seeking a role to apply exceptional ability to switch between programming languages and frameworks as needed, while working quickly and independently.</p>
+  </section>
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="skill">
+        <div class="skill-label">HTML, CSS, JavaScript</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width: 90%;"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-label">Python, Django</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-label">C++, Java</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width: 80%;"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-label">MySQL</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width: 75%;"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-label">Git & GitHub</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+      </div>
+    </div>
   </section>
   <section id="projects">
     <h2>Projects</h2>
@@ -123,6 +173,7 @@
       <p>Email: Sarangdhar265@gmail.com</p>
       <p>Phone: +91-9576809247</p>
       <p>GitHub: <a href="https://github.com/Sarang-bihar" target="_blank">github.com/Sarang-bihar</a></p>
+      <p>Instagram: <a href="https://instagram.com/yourusername" target="_blank">@yourusername</a></p>
     </div>
   </section>
   <footer>
@@ -130,3 +181,5 @@
   </footer>
 </body>
 </html>
+
+
